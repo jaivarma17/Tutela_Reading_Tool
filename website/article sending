@@ -1,0 +1,27 @@
+import sqlite3
+import time
+
+DATABASE_PATH = 'articles.db'
+TIME_INTERVAL_HOURS = 168  
+
+def get_articles(cursor):
+    cursor.execute("SELECT id, title, content FROM articles")
+    return cursor.fetchall()
+
+def send_article(article):
+    print(f"Sending article: {article['title']}")
+    print(article['content'])
+def main():
+    conn = sqlite3.connect(DATABASE_PATH)
+    cursor = conn.cursor()
+    articles = get_articles(cursor)
+   
+    for article in articles:
+        article_data = {'id': article[0], 'title': article[1], 'content': article[2]}
+        send_article(article_data)
+        time.sleep(TIME_INTERVAL_SECONDS)  
+   
+    conn.close()
+
+if __name__ == "__main__":
+    main()

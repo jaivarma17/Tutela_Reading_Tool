@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0C2A3A;
+        }
+
+        .form-container {
+            background-color: #C9A060;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            color: black;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: white; /* Change label text color to white */
+            font-size: 1em; /* Increase font size of labels */
+        }
+
+        .form-group input[type="url"],
+        .form-group textarea {
+            width: 50%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: white; /* Change input text color to white */
+            background-color: #333; /* Set background color for inputs */
+            font-size: 1.5em; /* Increase font size of input text */
+        }
+
+        .form-group textarea {
+            width: 100%;
+            height: 150px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical; /* Allows vertical resizing */
+            font-size: 1.5em; /* Increase font size of textarea text */
+        }
+
+        .form-group button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em; /* Increase font size of button text */
+            margin-right: 7px;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: white; /* Change error message text color to white */
+            margin-top: 10px;
+            font-size: 1em; /* Increase font size of error messages */
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form id="userForm" method="post">
+            <div class="form-group">
+                {% csrf_token %}
+                <label for="articleURL">Select an article:</label>
+                <select id="articleURL" name="articleURL" required>
+                    <option value="" disabled selected>Select an article</option>
+                    {% for article in articles %}
+                        <option value="{{ article.ArticleURL }}">{{ article.ArticleWebsite }} - {{ article.ArticleName }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="userInput">Enter summary (up to 20 words):</label>
+                <textarea id="userInput" name="userInput" required></textarea>
+                <div id="error-message" class="error-message"></div>
+                {% if error %}
+                <div class="error-message">{{ error }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group buttons-group">
+                <button type="submit">Submit</button>
+                <button type="button" onclick="window.location.href='{% url 'index.html' %}'">HOME</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            const textarea = document.getElementById('userInput');
+            const errorDiv = document.getElementById('error');
+            const text = textarea.value;
+            const wordCount = text.trim().split(/\s+/).length;
+
+            if (wordCount > 20) {
+                event.preventDefault(); // Prevent form submission
+                errorDiv.textContent = 'Your input exceeds the 20-word limit. Please reduce the number of words.';
+                return;
+            }
+
+            errorDiv.textContent = ''; // Clear error message if valid
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0C2A3A;
+        }
+
+        .form-container {
+            background-color: #C9A060;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            color: black;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            height: 150px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical; /* Allows vertical resizing */
+        }
+
+        .form-group button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body style="background-color: #0C2A3A;" >
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-container">
+            <form id="userForm">
+                <div class="form-group">
+                    <label for="userInput">Enter summary (up to 200 words):</label>
+                    <textarea id="userInput" name="userInput" required></textarea>
+                    <div id="error" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            document.getElementById('userForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent form from submitting normally
+
+                const textarea = document.getElementById('userInput');
+                const errorDiv = document.getElementById('error');
+                const text = textarea.value;
+                const wordCount = text.trim().split(/\s+/).length;
+
+                if (wordCount > 200) {
+                    errorDiv.textContent = 'Your input exceeds the 200-word limit. Please reduce the number of words.';
+                    return;
+                }
+
+                errorDiv.textContent = ''; // Clear error message if valid
+
+                // Redirect to thank you page
+                window.location.href = 'thankyou.html';
+            });
+        </script>
+</body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            height: 150px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical; /* Allows vertical resizing */
+        }
+
+        .form-group button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form id="userForm">
+            <div class="form-group">
+                <label for="userInput">Enter your summary (up to 200 words):</label>
+                <textarea id="userInput" name="userInput" required></textarea>
+                <div id="error" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting normally
+
+            const textarea = document.getElementById('userInput');
+            const errorDiv = document.getElementById('error');
+            const text = textarea.value;
+            const wordCount = text.trim().split(/\s+/).length;
+
+            if (wordCount > 200) {
+                errorDiv.textContent = 'Your input exceeds the 200-word limit. Please reduce the number of words.';
+                return;
+            }
+
+            errorDiv.textContent = ''; // Clear error message if valid
+            // Process the form data here (e.g., send to server, display confirmation, etc.)
+            console.log('Form submitted with text:', text);
+
+            // Optionally, clear the form
+            textarea.value = '';
+        });
+    </script>
+</body>
+</html>  --> 

@@ -1,0 +1,42 @@
+import os
+status_file = 'assignment_status.txt'
+counter_file = 'submission_counter.txt'
+if not os.path.exists(status_file):
+    with open(status_file, 'w') as f:
+    f.write('not_submitted')
+ if not os.path.exists(counter_file):
+     with open(counter_file, 'w') as f:
+         f.write('0')
+
+ def get_submission_status():
+     with open(status_file, 'r') as f:
+         status = f.read().strip()
+     return status
+
+ def set_submission_status(status):
+     with open(status_file, 'w') as f:
+         f.write(status)
+
+def read_counter():
+     with open(counter_file, 'r') as f:
+         count = int(f.read().strip())
+     return count
+
+ def update_counter(value):
+     with open(counter_file, 'w') as f:
+         f.write(str(value))
+
+ def main():
+     status = get_submission_status()
+
+     if status == 'not_submitted':
+         current_count = read_counter()
+         new_count = current_count + 1
+         update_counter(new_count)
+         print(f"Assignment not submitted. Counter incremented to {new_count}.")
+         set_submission_status('submitted')
+     else:
+	print("Assignment has already been submitted!")
+
+ if __name__ == '__main__':
+     main()

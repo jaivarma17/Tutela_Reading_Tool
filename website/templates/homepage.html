@@ -1,0 +1,238 @@
+<!--<h1>Articles Database </h1>-->
+
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <h1> <u> ARTICLES </u> </h1>
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+		 h1 {
+            text-align: center;
+        }
+		/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  font-family: Poppins, sans-serif;
+  line-height: 1.5;
+  color: black;
+  background-color: #0C2A3A;
+  padding: 20px;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: #C9A060;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+/* Links */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons */
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 15px;
+  color: black;
+  background-color: burlywood;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 1s ease;
+}
+
+button: {
+  background-color: #C9A060;
+}
+
+/* Lists */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #C9A060;
+
+}
+
+/* Form Elements */
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1.2em;
+  }
+}
+
+
+	</style>
+</head>
+
+<body>
+    
+    <ul>
+        {% for article in articles %}
+            <li>
+                <a href="{{ article.ArticleURL }}" target="_blank" style="color: #F5EDE2; ">{{ article.ArticleWebsite }}</a> 
+                - {{ article.ArticleName }}
+            </li>
+        {% empty %}
+            <li>No articles available.</li>
+        {% endfor %}
+    </ul>
+
+    <div style="height: 10px;"></div>
+
+    <form method="get" action="{% url 'index.html' %}">
+      <button type="submit">HOME</button>
+    </form>
+
+</body>
+
+<!-- <script>
+function fetchArticles() {
+    fetch("{% url 'fetch_articles' %}")
+    .then(response => response.json())
+    .then(data => {
+        let articleList = document.getElementById('article-list');
+        articleList.innerHTML = '';  // Clear the existing articles
+
+        const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);  // 24 hours ago
+
+        data.articles.forEach(article => {
+            let listItem = document.createElement('li');
+            listItem.textContent = `${article.ArticleWebsite} - ${article.ArticleName} (Article Number: ${article.ArticleNumber})`;
+
+            // Check if the article is new (within the last 24 hours)
+            let articleDate = new Date(article.created_at);
+            if (articleDate > oneDayAgo) {
+                listItem.classList.add('new-article');  // Add class for new articles
+            }
+
+            articleList.appendChild(listItem);
+        });
+    })
+    .catch(error => console.log('Error:', error));
+}
+
+// Fetch articles every 10 seconds
+setInterval(fetchArticles, 10000);
+
+</script>
+
+<style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');>
+    /* Style for the article list */
+    #article-list {
+        list-style-type: none;  /* Remove bullet points */
+        padding: 0;
+    }
+  body {
+    font-family: Poppins, sans-serif;
+    line-height: 1.5;
+    color: black;
+    background-color: #0C2A3A;
+    padding: 20px;  
+  }
+    /* Style for each article */
+    #article-list li {
+        padding: 10px;
+        margin: 5px 0;
+        background-color: ;  /* Light grey background */
+        border-radius: 5px;
+        font-size: 2em;
+        color: #C9A060;
+        margin-bottom: 10px;
+      font-family: Poppins, sans-serif;
+      line-height: 1.5;
+
+    }
+
+    /* New article styling (if dynamically added with JavaScript) */
+    .new-article {
+        background-color: #C9A060;  /* Highlight new articles */
+        font-weight: bold;
+        
+    }
+
+
+</style>
+
+<body>
+    <ul id="article-list">
+        {% for article in articles %}
+            <li>{{ article.ArticleWebsite }} - {{ article.ArticleName }} (Article Number: {{ article.ArticleNumber }})</li>
+        {% empty %}
+            <li>No articles available.</li>
+        {% endfor %}
+    </ul>
+
+    <div onclick="window.location.href='https://www.nytimes.com/search?query=ap+exams';" style="cursor: pointer;">
+        <h2>1. NY Times AP</h2>
+    </div>
+    <div onclick="window.location.href='https://www.nytimes.com/search?query=sat+exams';" style="cursor: pointer;">
+        <h2>2. NY Times SAT</h2>
+    </div>
+</body>-->

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Summary Evaluation Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .result-box {
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 600px;
+            text-align: center;
+            border: 2px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        .evaluation {
+            font-size: 1.5em;
+            color: green; /* or red if invalid */
+        }
+    </style>
+</head>
+<body>
+    <div class="result-box">
+        <h1>Summary Evaluation</h1>
+        <p class="evaluation">{{ evaluation }}</p>  <!-- Display the GPT evaluation result here -->
+        
+        <!-- Button to go back to the summary submission form -->
+        <a href="{% url 'check_summary' %}"><button>Check Another Summary</button></a>
+    </div>
+</body>
+</html>

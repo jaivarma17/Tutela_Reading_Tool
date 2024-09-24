@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Options</title>
+</head>
+<body>
+    <h2>Choose an Option</h2>
+    <form method="get" action="{% url 'register_view' %}">
+        <button type="submit">Register</button>
+    </form>
+    <form method="get" action="{% url 'pause_registration' %}">
+        <button type="submit">Pause Registration</button>
+    </form>
+    <form method="get" action="{% url 'resume_registration' %}">
+        <button type="submit">Resume Registration</button>
+    </form>
+</body>
+</html>

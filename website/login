@@ -1,0 +1,17 @@
+from flask import Flask, request, redirect, url_for
+
+app = Flask(__name__)
+
+@app.route('/submit-login', methods=['POST'])
+def submit_login():
+    username = request.form['username']
+    password = request.form['password']
+    # Handle authentication logic here
+    return redirect(url_for('success'))
+
+@app.route('/success')
+def success():
+    return "Login successful!"
+
+if __name__ == '__main__':
+    app.run(debug=True)

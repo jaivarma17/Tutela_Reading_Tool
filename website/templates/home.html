@@ -1,0 +1,85 @@
+<!--<h1> Articles Database </h1>
+
+{% for  item in all%}
+	<p>{{ item.ArticleWebsite }} - {{ item.ArticleName }}
+	</p>
+{% endfor %}
+
+<a href = "https://www.nytimes.com/search?query=ap+exams">NY times AP<a/>
+
+<p>NY Times AP <a href="https://www.nytimes.com/search?query=ap+exams">clickable link</a>.</p>
+
+<div onclick="window.location.href='https://www.nytimes.com/search?query=ap+exams';" style="cursor: pointer;">
+	<y> NY Times AP </y>
+	<p>{{ item.ArticleWebsite }}  {{ item.ArticleName }}
+	</p>
+</div>--> 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .login-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-container h2 {
+            margin-top: 0;
+        }
+        .login-container label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>
+
+

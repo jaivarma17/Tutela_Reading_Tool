@@ -1,0 +1,265 @@
+<!-- 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+</head>
+<body>
+    <h1>Registered Users</h1>
+    <ul>
+        {% if users_data %}
+            {% for user in users_data %}
+                <li>{{ user }}</li>
+            {% endfor %}
+        {% else %}
+            <li>No users found.</li>
+        {% endif %}
+    </ul>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .spacer {
+            height: 10px; 
+        }
+    
+    </style>
+</head>
+<body>
+    <h1>Registered Users</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Parents Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if users_data %}
+                {% for user in users_data %}
+                    <tr>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.parents_email }}</td>
+                        <td> 
+                            <form method="get" action="{% url 'pause_registration' %}">
+                                <button type="submit">Pause Registration</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="get" action="{% url 'resume_registration' %}">
+                                <button type="submit">Resume Registration</button>
+                            </form>
+                        </td>
+
+    
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3">No users found.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <form method="get" action="{% url 'register_view' %}">
+        <button type="submit">Register</button>
+    </form>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    
+</body>
+</html>
+ -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .spacer {
+            height: 10px; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Registered Users</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Parents Email</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% if users_data %}
+                {% for user in users_data %}
+                    <tr>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.parents_email }}</td>
+                        <td>
+                            <form method="get" action="{% url 'pause_registration' %}">
+                                <button type="submit">Pause Registration</button>
+                            </form>
+                        </td>
+                        <td>
+                                <form method="get" action="{% url 'resume_registration' %}">
+                                    <button type="submit">Resume Registration</button>
+                                </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="5">No users found.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <div class="spacer"></div>
+    <form method="get" action="{% url 'register_view' %}">
+        <button type="submit">Register</button>
+    </form>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .spacer {
+            height: 10px; 
+        }
+        .button-space {
+            margin-bottom: 10px; /* Adds space below the first form */
+        }
+    </style>
+    <script>
+        function confirmRemoval(username) {
+            return confirm(`Are you sure you want to permanently remove ${username}?`);
+        }
+    </script>
+</head>
+<body>
+    <h1>Registered Users</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Mother's Email</th>
+                <th>Father's Email</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if users_data %}
+                {% for user in users_data %}
+                    <tr>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.mothers_email }}</td>
+                        <td>{{ user.fathers_email }}</td>
+                        <td>{{ user.status }}</td>
+                        <td>
+                            {% if user.status == 'active' %}
+                                <form method="get" action="{% url 'pause_registration' username=user.name %}">
+                                    <button type="submit">Pause Registration</button>
+                                </form>
+                            {% else %}
+                                <form method="get" action="{% url 'resume_registration' username=user.name %}">
+                                    <button type="submit">Resume Registration</button>
+                                </form>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <form method="post" action="{% url 'remove_user' username=user.name %}" onsubmit="return confirmRemoval('{{ user.name }}');">
+                                {% csrf_token %}
+                                <button type="submit" style="color: red;">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="7">No users found.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <div class="spacer"></div>
+    <form method="get" action="{% url 'register_view' %}">
+        <button type="submit">Register</button>
+    </form>
+
+    <div style="height: 10px;"></div>
+
+    <form method="get" action="{% url 'homescreen' %}">
+        <button type="submit">HOME</button>
+    </form>
+    
+</body>
+</html>

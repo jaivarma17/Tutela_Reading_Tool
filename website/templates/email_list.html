@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registered Emails</title>
+</head>
+<body>
+    <h1>Registered Emails</h1>
+    <ul>
+        {% for email in emails %}
+            <li>{{ email.email }} (Registered on {{ email.created_at }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

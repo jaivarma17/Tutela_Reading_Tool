@@ -1,0 +1,36 @@
+ArticleWebsite: NY Times
+ArticleName: ACT
+ArticleSummary: 
+The ACT reported that the average score for the high school class of 2023 was 19.5 out of 36, marking the lowest average score since 1991. This decline continues a six-year trend, with a record 43% of test-takers failing to meet any of the subject-matter benchmarks for college readiness in English, reading, math, and science. This is up from 36% in 2019.
+The decline in scores is attributed to several factors:
+Pandemic Disruptions: Many students faced interruptions in their education due to COVID-19, including months of online learning, which may have impacted their academic performance.
+Changes in Testing and Admissions: The college admissions landscape has shifted significantly. Only 43% of college applicants submitted standardized test scores last year, down from 74% before the pandemic, due to the rise of test-optional policies. These policies were implemented partly to address concerns about the fairness of tests to low-income students.
+Increased Testing Requirements: ACT's expansion in state education systems has led to more students taking the test, often under less optimal conditions. For the class of 2023, approximately 748,000 students took the ACT during the school day for free, compared to 590,000 in 2021. Sixteen states required or highly encouraged the exam, which may have included students less prepared for college-level work.
+ACT senior director Rose Babington noted that the persistent declines in scores highlight the need for additional support for these students as they transition to college or the workforce.
+ArticleURL: https://www.nytimes.com/2023/10/11/us/act-scores-college-admissions.html?searchResultPosition=1
+
+ArticleWebsite: NY Times
+ArticleName: SAT
+ArticleSummary: 
+John McWhorter argues against the notion that the SAT is inherently racist, countering recent trends where standardized testing is being criticized for perpetuating racial disparities. Despite claims that standardized tests reflect socioeconomic biases and disadvantage minority students, McWhorter points out that reinstating the SAT by Ivy League schools like Brown, Yale, and Dartmouth can be seen as a step towards fairness. He asserts that standardized tests, including the SAT, can effectively demonstrate student abilities across various backgrounds, contrary to the belief that they are biased against Black students. The piece critiques the idea that standardized testing is an expression of racial bias, arguing instead that it can help identify talented students from diverse backgrounds who might otherwise be overlooked.
+ArticleURL: https://www.nytimes.com/2024/03/14/opinion/sat-college-admissions-antiracism.html?searchResultPosition=2
+
+ArticleWebsite: NY Times
+ArticleName: AP Exams
+ArticleSummary: 
+The College Board's revised A.P. African American Studies framework has faced criticism for omitting certain controversial topics. The updated curriculum, released on December 6, 2023, excludes critical race theory and structural racism—key concepts argued to be essential by academics. It also largely ignores L.G.B.T.Q. issues except for a brief mention of civil rights leader Bayard Rustin’s sexuality. Although the course now covers "systemic oppression," it does not require studying the Black Lives Matter movement, which is optional.
+The updated framework retains the concept of “intersectionality,” focusing on how different forms of discrimination overlap, and includes required topics on Black feminism and police violence. Despite these inclusions, some topics have been excluded due to political pressures and state bans on certain terms related to critical race theory. Brandi Waters, lead author of the course framework, expressed hope that the revised course will be widely accessible and beneficial for students.
+ArticleURL: https://www.nytimes.com/2023/12/06/us/ap-african-american-studies-college-board.html?searchResultPosition=2
+
+ArticleWebsite: US News
+ArticleName: AP Exams
+ArticleSummary: 
+The article provides tips for self-studying for Advanced Placement (AP) exams, emphasizing strategies like avoiding procrastination, balancing content review with exam strategy, and utilizing summer study time. It also highlights the importance of test day preparation and self-discipline for students not enrolled in AP courses.
+ArticleURL: https://www.usnews.com/education/blogs/college-admissions-playbook/articles/what-to-know-about-self-studying-for-ap-exams
+
+ArticleWebsite: US News
+ArticleName: ACT
+ArticleSummary: 
+The article from U.S. News & World Report provides a detailed overview of what constitutes a good ACT score. It explains that a good ACT score is relative to the colleges to which students are applying, as admissions standards vary between institutions. For selective colleges, a score of 34 or higher is often seen as competitive, while the national average composite score for the class of 2020 was 20.6.
+The article also discusses the impact of the COVID-19 pandemic on testing policies, with many schools becoming test-optional or test-blind. It emphasizes the importance of checking individual college requirements and provides a breakdown of ACT score percentiles and their implications for college admissions. Finally, it offers tips for improving ACT scores, such as taking practice tests and learning from mistakes.
+ArticleURL: https://www.usnews.com/education/best-colleges/articles/understand-whats-a-good-act-score-for-college-admissions

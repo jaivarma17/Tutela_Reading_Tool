@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Screen</title>
+    <h1> HOME PAGE </h1>
+
+</head>
+<body>
+    <div onclick="window.location.href = 'http://localhost:8000/articles/';" style="cursor: pointer;">
+	<h1> Articles </h1>
+	</div>
+
+
+    <ul>
+    	{% for article in articles %}
+            <li><a href="{% url 'article_list' %}">{{ article.title }}</a></li>
+        {% empty %}
+            
+        {% endfor %}
+
+    </ul>
+
+	<div onclick="window.location.href = 'http://localhost:8000/users/';" style="cursor: pointer;">
+	<h1> Users </h1>
+	</div>
+
+    <ul>
+        {% for user in users %}
+            <li><a href="{% url 'user_list' %}">{{ user.username }}</a></li>
+        {% empty %}
+            
+        {% endfor %}
+    </ul>
+
+    <div onclick="window.location.href = '{% url 'ai_key' %}';" style="cursor: pointer;">
+        <h1> AI Key </h1>
+    </div>
+
+
+</body>
+</html>
